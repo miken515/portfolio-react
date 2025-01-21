@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 
 export function Contact() {
     return (
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-5">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-5 py-8 sm:py-4">
             <div className="flex flex-col justify-center content-center">
                 <h5 className="text-xl font-bold my-2 uppercase">Let&apos;s Connect!</h5>
                 <p className="text-[#ADB7BE] mb-4 max-w-md">

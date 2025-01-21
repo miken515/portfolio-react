@@ -46,7 +46,7 @@ export function Hero() {
                 <p className="text-primary sm:text-lg mb-6 lg:text-xl">
                     I know I am asking for a lot, but feel free to connect with me on LinkedIn!
                 </p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center sm:justify-start gap-3">
                     <Button>Hire Me</Button>
                     <Button variant="secondary">Download CV</Button>
                     <Link href="https://github.com/miken515" target="_blank">
@@ -54,6 +54,7 @@ export function Hero() {
                         src="/icons/github-icon.svg"
                         width={50}
                         height={50}
+                        priority={false} 
                         alt="Github Icon"
                         className="invert dark:invert-0"
                         />
