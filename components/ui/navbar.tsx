@@ -7,11 +7,11 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
+import { ModeToggle } from "../layout/mode-toggle";
 
 const Navbar = () => {
 return (
-    <nav>
+    <nav className="navbar">
         <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
             <Link
                 href={"/"}
@@ -56,6 +56,7 @@ return (
                         </NavigationMenuItem>
                     </NavigationMenuList>
                 </NavigationMenu>
+                <ModeToggle/>
             </div>
         </div>
     </nav>

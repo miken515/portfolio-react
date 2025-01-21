@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/ui/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "@/components/layout/mode-toggle";
 
 
 
@@ -39,9 +40,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navbar/>
-            <div className="container mt-24 mx-auto px-5 py-4">
+            <main className="container mt-24 mx-auto px-5 py-4">
               {children}
-            </div>
+            </main>
           </ThemeProvider>
         </body>
       </html>
