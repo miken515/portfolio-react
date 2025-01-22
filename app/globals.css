@@ -100,4 +100,5 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000; /* Ensures it stays above other content */
+  background-color: hsl(var(--background))
 }

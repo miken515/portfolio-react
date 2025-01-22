@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 
 export function Hero() {
     return (
-    <section className="lg:py-16">
+    <section className="py-12 sm:py-8">
         <div className="grid grid-cols-1 sm:grid-cols-12">
             <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -43,31 +43,12 @@ export function Hero() {
                         repeat={Infinity}
                     />
                 </h2>
-                <p className="text-primary sm:text-lg mb-6 lg:text-xl">
+                <p className="text-gray-600 sm:text-lg mb-6 lg:text-xl">
                     I know I am asking for a lot, but feel free to connect with me on LinkedIn!
                 </p>
-                <div className="flex items-center justify-center sm:justify-start gap-3">
+                <div className="flex items-center justify-center mb-6 sm:mb-0 sm:justify-start gap-3">
                     <Button>Hire Me</Button>
                     <Button variant="secondary">Download CV</Button>
-                    <Link href="https://github.com/miken515" target="_blank">
-                        <Image
-                        src="/icons/github-icon.svg"
-                        width={50}
-                        height={50}
-                        priority={false} 
-                        alt="Github Icon"
-                        className="invert dark:invert-0"
-                        />
-                    </Link>
-                    <Link href="https://linkedin.com/in/miken515" target="_blank">
-                        <Image
-                        src="/icons/linkedin-icon.svg"
-                        width={50}
-                        height={50}
-                        alt="Linkedin Icon"
-                        className="invert dark:invert-0"
-                        />
-                    </Link>
                 </div>
             </motion.div>
             <motion.div
@@ -76,7 +57,7 @@ export function Hero() {
                 transition={{ duration: 0.5 }}
                 className="col-span-4 place-self-center mt-4 lg:mt-0"
             >
-                <div className="rounded-full bg-orange-400 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative flex items-center justify-center">
+                <div className="rounded-full w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative flex items-center justify-center">
                     <Image
                         src="/images/pfp.jpeg"
                         alt="hero image"
