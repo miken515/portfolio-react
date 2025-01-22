@@ -45,7 +45,7 @@ export function About() {
                 {/* Left Column: Fun Facts */}
                 <div className="col-span-1 text-center sm:text-left">
                     <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-                        <h2 className="text-4xl font-bold mb-4">Fun Facts!</h2>
+                        <h2 className="text-4xl font-bold mb-4 uppercase">Fun Facts!</h2>
                         <p className="text-gray-600 text-base sm:text-lg">
                         Cats cannot taste sweetness. Full-stack developer by day, bug slayer by night! 
                         When I&apos;m not architecting Docker solutions or making databases run faster than my coffee maker, 
