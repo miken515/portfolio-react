@@ -1,7 +1,9 @@
-import { useState } from 'react';
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import { ModeToggle } from "./mode-toggle";
-import { Menu } from 'lucide-react';
+import { Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -14,7 +16,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="border-b-2">
+    <nav className="navbar border-b-1">
       <div className="flex items-center justify-between px-4 py-2 lg:py-4">
         {/* Logo/Name Section */}
         <Link href={"/"} className="text-2xl md:text-5xl font-semibold uppercase">
