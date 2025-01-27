@@ -16,11 +16,13 @@ export async function POST(req: Request) {
 
     // Configure Nodemailer transporter
     const transporter = nodemailer.createTransport({
-      service: "gmail", // Or use "smtp" for custom configurations
+      host: "smtp.gmail.com",
+      port: 465,
       auth: {
         user: process.env.EMAIL_USER, // Your email address
         pass: process.env.EMAIL_PASS, // Your email password or app-specific password
       },
+      secure: true,
     });
 
     // Send the email
