@@ -11,11 +11,11 @@ import Image from "next/image";
 const technicalSkills = [
     {
       category: "Programming Languages",
-      skills: ["TypeScript", "JavaScript", "MySQL", "Python", "HTML", "CSS", "PHP"],
+      skills: ["TypeScript", "MySQL", "Python", "HTML", "CSS", "PHP"],
     },
     {
       category: "Development Tools",
-      skills: ["Docker", "Git", "Figma", "Postman", "Swagger", "Jira", "VS Code"],
+      skills: ["Docker", "Git", "Figma", "Postman", "Swagger", "VS Code"],
     },
     {
         category: "Development Practices",

@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Hero/>
       <About/>
-      <ProjectDemo/>
+      {/* <ProjectDemo/> */}
       <Contact/>
     </>
   );
