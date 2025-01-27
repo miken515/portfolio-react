@@ -37,7 +37,7 @@ export function Navbar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <NavigationMenu className="uppercase font-semibold">
+          {/* <NavigationMenu className="uppercase font-semibold">
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="#demo" legacyBehavior passHref>
@@ -47,7 +47,7 @@ export function Navbar() {
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
-          </NavigationMenu>
+          </NavigationMenu> */}
 
           <NavigationMenu className="uppercase font-semibold">
             <NavigationMenuList>
@@ -88,7 +88,7 @@ export function Navbar() {
                 About
               </div>
             </li>
-            <li>
+            {/* <li>
               <div
                 onClick={() => {
                   const sectionId = "demo";
@@ -99,7 +99,7 @@ export function Navbar() {
               >
                 Project Demos
               </div>
-            </li>
+            </li> */}
             <li>
               <button
                 onClick={() => {
