@@ -60,8 +60,7 @@ export function Contact() {
       <div className="flex flex-col justify-center content-center">
         <h2 className="text-4xl font-bold my-2 uppercase">Let&apos;s Connect!</h2>
         <p className="text-gray-600 mb-4 max-w-md sm:text-lg">
-          I&apos;m currently looking for new opportunities, my inbox is always
-          open. Whether you have a question or just want to say hi, I&apos;ll
+          Whether you have a question or just want to say hi, I&apos;ll
           try my best to get back to you!
         </p>
         <div className="flex items-center justify-center sm:justify-start gap-3 -mx-2">
