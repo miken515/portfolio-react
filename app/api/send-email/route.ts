@@ -27,7 +27,9 @@ export async function POST(req: Request) {
 
     // Send the email
     const mailOptions = {
-      from: email, // The sender's email address (user's input)
+      // Gmail only sends as the authenticated account, so send from it and set replyTo to the visitor
+      from: process.env.EMAIL_USER,
+      replyTo: email,
       to: process.env.RECEIVER_EMAIL, // Your email address to receive messages
       subject: `Contact Form: ${subject}`,
       text: `Message from ${email}:\n\n${message}`,
