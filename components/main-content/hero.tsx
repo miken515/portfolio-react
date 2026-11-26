@@ -1,70 +1,101 @@
 "use client";
-// import React from "react";
-import Image from "next/image";
-import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { Button } from "@/components/ui/button"
 
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { motion } from "motion/react";
+import { TypeAnimation } from "react-type-animation";
+import { Button } from "@/components/ui/button";
+import { highlights, profile } from "@/lib/resume";
+
+const HeroScene = dynamic(() => import("@/components/three/hero-scene"), { ssr: false });
 
 export function Hero() {
-    return (
-    <section className="pt-12 sm:py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-12">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="col-span-8 place-self-center text-center sm:text-left justify-self-start sm:order-1 order-2"
-            >
-                <h2 className="mb-4 text-2xl sm:text-5xl lg:text-8xl lg:leading-normal font-extrabold mt-14">
-                    <span>
-                        Hello, I&apos;m{" "}
-                    </span>
-                    <br />
-                    <TypeAnimation
-                        sequence={[
-                            "Mike Nguyen",
-                            2000,
-                            "A Software Dev",
-                            2000,
-                            "And...",
-                            4000,
-                            "A Dog Lover!",
-                            1000,
-                            "And Cats!",
-                            1000,
-                        ]}
-                        wrapper="span"
-                        speed={30}
-                        repeat={Infinity}
-                    />
-                </h2>
-                <p className="text-gray-600 sm:text-lg mb-6 lg:text-xl">
-                    I know I am asking for a lot, but feel free to connect with me on LinkedIn!
-                </p>
-                {/* <div className="flex items-center justify-center mb-6 sm:mb-0 sm:justify-start gap-3">
-                    <Button>Hire Me</Button>
-                    <Button variant="secondary">Download CV</Button>
-                </div> */}
-            </motion.div>
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="col-span-4 place-self-center mt-4 lg:mt-0 sm:order-2 order-1"
-            >
-                <div className="rounded-full w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative flex items-center justify-center">
-                    <Image
-                        src="/images/pfp.jpeg"
-                        alt="hero image"
-                        className="rounded-full"
-                        width={390}
-                        height={390}
-                    />
-                </div>
-            </motion.div>
-        </div>
+  const { resolvedTheme } = useTheme();
+
+  return (
+    <section className="relative pt-12 pb-16 sm:pt-16 sm:pb-24">
+      {/* full-bleed 3D wave behind the hero */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-full w-screen -translate-x-1/2 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_70%,transparent)]"
+      >
+        <HeroScene dark={resolvedTheme === "dark"} />
+      </div>
+
+      <div className="grid grid-cols-1 items-center gap-10 sm:grid-cols-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="order-2 text-center sm:order-1 sm:col-span-8 sm:text-left"
+        >
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            {profile.title} · {profile.company}
+          </p>
+          <h1 className="mb-4 text-4xl font-extrabold leading-tight sm:text-5xl lg:text-7xl">
+            Hello, I&apos;m
+            <br />
+            <TypeAnimation
+              sequence={[
+                "Mike Nguyen",
+                2200,
+                "a Software Engineer",
+                1800,
+                "a Golfer ⛳",
+                1400,
+                "a Runner 🏃",
+                1400,
+                "a Gamer 🎮",
+                1400,
+              ]}
+              wrapper="span"
+              speed={40}
+              repeat={Infinity}
+              className="bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent"
+            />
+          </h1>
+          <p className="mx-auto mb-8 max-w-xl text-base sm:mx-0 sm:text-lg lg:text-xl">
+            Full-stack engineer in {profile.location} building event-driven cloud services on AWS and the React
+            frontends that sit on top of them.
+          </p>
+          <div className="mb-10 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+            <Button asChild size="lg">
+              <Link href="#experience">See my work</Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary">
+              <Link href="#contact">Let&apos;s connect</Link>
+            </Button>
+          </div>
+          <dl className="grid grid-cols-3 gap-3 sm:max-w-xl">
+            {highlights.map((h) => (
+              <div key={h.value} className="rounded-lg border bg-background/70 p-3 backdrop-blur">
+                <dt className="text-2xl font-bold sm:text-3xl">{h.value}</dt>
+                <dd className="text-xs text-muted-foreground sm:text-sm">{h.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="order-1 place-self-center sm:order-2 sm:col-span-4"
+        >
+          <div className="relative h-[220px] w-[220px] rounded-full bg-gradient-to-tr from-green-500 via-blue-500 to-purple-500 p-1 lg:h-[340px] lg:w-[340px]">
+            <Image
+              src="/images/pfp.jpeg"
+              alt="Portrait of Mike Nguyen"
+              className="h-full w-full rounded-full object-cover"
+              width={340}
+              height={340}
+              priority
+            />
+          </div>
+        </motion.div>
+      </div>
     </section>
-    )
+  );
 }

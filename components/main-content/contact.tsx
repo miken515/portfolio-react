@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { profile } from "@/lib/resume";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -38,8 +39,6 @@ export function Contact() {
         body: JSON.stringify(formData),
       });
 
-      console.log('lol', response)
-
       if (response.ok) {
         setSuccessMessage("Your message was sent successfully!");
         setFormData({ email: "", subject: "", message: "" });
@@ -56,15 +55,19 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="grid grid-cols-1 md:grid-cols-2 gap-4 py-12">
+    <section id="contact" className="grid scroll-mt-28 grid-cols-1 gap-8 py-16 md:grid-cols-2">
       <div className="flex flex-col justify-center content-center">
         <h2 className="text-4xl font-bold my-2 uppercase">Let&apos;s Connect!</h2>
-        <p className="text-gray-600 mb-4 max-w-md sm:text-lg">
+        <p className="mb-4 max-w-md text-muted-foreground sm:text-lg">
           Whether you have a question or just want to say hi, I&apos;ll
-          try my best to get back to you!
+          try my best to get back to you! You can also email me at{" "}
+          <a href={`mailto:${profile.email}`} className="font-medium text-foreground underline underline-offset-4">
+            {profile.email}
+          </a>
+          .
         </p>
         <div className="flex items-center justify-center sm:justify-start gap-3 -mx-2">
-          <Link href="https://github.com/miken515" target="_blank">
+          <Link href={profile.github} target="_blank" rel="noopener noreferrer">
             <Image
               src="/icons/github-icon.svg"
               width={50}
@@ -74,7 +77,7 @@ export function Contact() {
               className="invert dark:invert-0"
             />
           </Link>
-          <Link href="https://linkedin.com/in/miken515" target="_blank">
+          <Link href={profile.linkedin} target="_blank" rel="noopener noreferrer">
             <Image
               src="/icons/linkedin-icon.svg"
               width={50}
@@ -93,6 +96,7 @@ export function Contact() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
+                required
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -105,6 +109,7 @@ export function Contact() {
               <Label htmlFor="subject">Subject</Label>
               <Input
                 id="subject"
+                required
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="ex. New Opportunity"
@@ -116,6 +121,8 @@ export function Contact() {
               <Label htmlFor="message">Message</Label>
               <Textarea
                 id="message"
+                required
+                rows={6}
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Type your message here."
