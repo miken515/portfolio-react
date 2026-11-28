@@ -6,8 +6,15 @@ html {
   scroll-behavior: smooth;
 }
 
+html {
+  background: #d9ecef;
+}
+html.dark {
+  background: #1e2b50;
+}
+
 body {
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), ui-rounded, "Segoe UI", sans-serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -24,31 +31,31 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    --background: 44 55% 92%;
+    --foreground: 150 11% 21%;
+    --card: 42 81% 96%;
+    --card-foreground: 150 11% 21%;
+    --popover: 42 81% 96%;
+    --popover-foreground: 150 11% 21%;
+    --primary: 110 35% 40%;
+    --primary-foreground: 42 81% 96%;
+    --secondary: 79 38% 87%;
+    --secondary-foreground: 150 11% 21%;
+    --muted: 43 43% 87%;
+    --muted-foreground: 129 7% 39%;
+    --accent: 39 76% 81%;
+    --accent-foreground: 36 30% 17%;
+    --destructive: 10 56% 51%;
+    --destructive-foreground: 42 81% 96%;
+    --border: 42 39% 78%;
+    --input: 42 39% 78%;
+    --ring: 110 35% 40%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 1rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -59,25 +66,25 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
+    --background: 223 51% 14%;
+    --foreground: 69 32% 91%;
+    --card: 220 47% 17%;
+    --card-foreground: 69 32% 91%;
+    --popover: 220 47% 17%;
+    --popover-foreground: 69 32% 91%;
+    --primary: 102 44% 68%;
+    --primary-foreground: 158 33% 9%;
+    --secondary: 220 40% 22%;
+    --secondary-foreground: 69 32% 91%;
+    --muted: 221 42% 20%;
+    --muted-foreground: 219 20% 72%;
+    --accent: 39 84% 69%;
+    --accent-foreground: 43 30% 9%;
+    --destructive: 11 58% 56%;
+    --destructive-foreground: 42 81% 96%;
+    --border: 222 36% 28%;
+    --input: 222 36% 28%;
+    --ring: 39 84% 69%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -99,8 +106,80 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-transparent text-foreground;
   }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), var(--font-body), sans-serif;
+  }
+}
+
+/* ---------- Painted-world theme ---------- */
+
+/* Sky behind the 3D landscape */
+.sky {
+  background: linear-gradient(180deg, #8fc8ea 0%, #bfe1f0 38%, #e3f1ee 62%, #fbf1d6 100%);
+}
+.dark .sky {
+  background: linear-gradient(180deg, #070d24 0%, #14204a 45%, #253463 75%, #3a4677 100%);
+}
+
+@layer components {
+/* Soft watercolor paper panels */
+.paper {
+  position: relative;
+  border: 1px solid hsl(var(--border));
+  border-radius: 1.25rem;
+  background-color: hsl(var(--card) / 0.86);
+  background-image:
+    radial-gradient(circle at 12% 0%, hsl(var(--accent) / 0.35), transparent 42%),
+    radial-gradient(circle at 100% 100%, hsl(var(--primary) / 0.14), transparent 48%);
+  box-shadow:
+    0 1px 0 hsl(0 0% 100% / 0.6) inset,
+    0 18px 40px -22px hsl(30 40% 20% / 0.55);
+  backdrop-filter: blur(6px);
+}
+.dark .paper {
+  background-color: hsl(var(--card) / 0.82);
+  box-shadow:
+    0 1px 0 hsl(0 0% 100% / 0.05) inset,
+    0 18px 40px -22px hsl(230 60% 3% / 0.9);
+}
+
+/* Hand-drawn brush underline for section titles */
+.brush {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 40 2, 80 11, 120 6 S 180 3, 198 7' fill='none' stroke='%23e8a35c' stroke-width='5' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.4em;
+  padding-bottom: 0.15em;
+}
+
+}
+
+/* Gentle paper grain over everything */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark .grain::after {
+  mix-blend-mode: screen;
+  opacity: 0.04;
+}
+
+/* Title text that stays readable over the painted sky */
+.storybook-shadow {
+  text-shadow: 0 2px 0 hsl(var(--card) / 0.9), 0 0 24px hsl(var(--card) / 0.8);
+}
+.dark .storybook-shadow {
+  text-shadow: 0 2px 0 hsl(var(--background) / 0.9), 0 0 24px hsl(var(--background) / 0.9);
 }
 
 /* Ensure the navbar is fixed */
@@ -110,5 +189,4 @@ body {
   left: 0;
   width: 100%;
   z-index: 1000; /* Ensures it stays above other content */
-  background-color: hsl(var(--background))
 }

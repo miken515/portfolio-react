@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--font-body)', 'ui-rounded', 'sans-serif'],
+  			display: ['var(--font-display)', 'var(--font-body)', 'sans-serif'],
+  			hand: ['var(--font-hand)', 'cursive']
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -67,6 +72,10 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		keyframes: {
+  			float: {
+  				'0%, 100%': { transform: 'translateY(0)' },
+  				'50%': { transform: 'translateY(-8px)' }
+  			},
   			'accordion-down': {
   				from: {
   					height: '0'
@@ -85,6 +94,7 @@ const config: Config = {
   			}
   		},
   		animation: {
+  			'float-slow': 'float 6s ease-in-out infinite',
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		}

@@ -19,9 +19,9 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="navbar border-b bg-background/80 backdrop-blur">
+    <nav className="navbar border-b border-border/60 bg-card/75 backdrop-blur-md">
       <div className="flex items-center justify-between px-4 py-2 lg:py-4">
-        <Link href="/" className="text-2xl font-semibold uppercase md:text-4xl">
+        <Link href="/" className="font-display text-2xl font-black md:text-3xl">
           Mike Nguyen
         </Link>
 
@@ -30,7 +30,7 @@ export function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className={cn(navigationMenuTriggerStyle(), "bg-transparent font-semibold uppercase")}
+              className={cn(navigationMenuTriggerStyle(), "rounded-full bg-transparent font-bold hover:bg-secondary")}
             >
               {l.label}
             </Link>
@@ -52,13 +52,13 @@ export function Navbar() {
       </div>
 
       {isMenuOpen && (
-        <ul className="space-y-1 border-t bg-background px-4 py-2 lg:hidden">
+        <ul className="space-y-1 border-t bg-card/95 px-4 py-2 lg:hidden">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block border-b py-2 uppercase last:border-b-0"
+                className="block border-b py-2 font-bold last:border-b-0"
               >
                 {l.label}
               </Link>

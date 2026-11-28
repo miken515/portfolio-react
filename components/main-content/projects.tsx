@@ -13,12 +13,12 @@ export function Projects() {
         {projects.map((p, i) => (
           <motion.div
             key={p.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 50, rotate: i % 2 ? 1.5 : -1.5 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
+            transition={{ type: "spring", stiffness: 60, damping: 16, delay: i * 0.1 }}
           >
-            <Card className="h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <Card className="paper h-full transition-transform duration-300 hover:-translate-y-1 hover:rotate-[-0.5deg]">
               <CardHeader>
                 <CardTitle>{p.name}</CardTitle>
               </CardHeader>
@@ -26,7 +26,7 @@ export function Projects() {
                 <p className="mb-4 text-muted-foreground">{p.description}</p>
                 <ul className="flex flex-wrap gap-2">
                   {p.tags.map((t) => (
-                    <li key={t} className="rounded-full bg-secondary px-3 py-1 text-xs">
+                    <li key={t} className="rounded-full border border-primary/25 bg-secondary px-3 py-1 text-xs">
                       {t}
                     </li>
                   ))}

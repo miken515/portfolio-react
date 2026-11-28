@@ -8,17 +8,17 @@ export function Experience() {
   return (
     <section id="experience" className="scroll-mt-28 py-16">
       <SectionHeading eyebrow="Experience" title="Where I've worked" />
-      <ol className="relative space-y-10 border-l-2 pl-6 sm:pl-10">
+      <ol className="relative space-y-8 border-l-2 border-dashed border-primary/50 pl-6 sm:pl-10">
         {experience.map((role, i) => (
           <motion.li
             key={`${role.company}-${role.title}`}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -40, rotate: -1 }}
+            whileInView={{ opacity: 1, x: 0, rotate: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="relative"
+            transition={{ type: "spring", stiffness: 60, damping: 16, delay: i * 0.05 }}
+            className="paper relative p-6"
           >
-            <span className="absolute -left-[33px] top-1.5 h-4 w-4 rounded-full border-4 border-background bg-gradient-to-tr from-green-500 to-blue-500 sm:-left-[49px]" />
+            <span className="absolute -left-[57px] top-7 h-4 w-4 rounded-full border-4 border-card bg-primary sm:-left-[73px]" />
             <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
               <h3 className="text-xl font-bold">
                 {role.title} <span className="text-muted-foreground">· {role.company}</span>
@@ -32,7 +32,7 @@ export function Experience() {
             </ul>
             <ul className="mt-4 flex flex-wrap gap-2">
               {role.tags.map((t) => (
-                <li key={t} className="rounded-full border px-3 py-1 text-xs">
+                <li key={t} className="rounded-full border border-primary/25 bg-secondary px-3 py-1 text-xs">
                   {t}
                 </li>
               ))}
