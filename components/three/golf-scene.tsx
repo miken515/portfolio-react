@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { LookAt, SceneCanvas, usePrefersReducedMotion } from "./scene-canvas";
+import { toonGradient } from "./toon";
 
 const BALL_R = 0.1;
 const TEE = new THREE.Vector3(-3.4, BALL_R + 0.08, 1.3);
@@ -41,7 +42,7 @@ function Flag({ speed }: { speed: number }) {
 
   return (
     <mesh ref={mesh} geometry={geometry} position={[HOLE.x + 0.02, 1.55, HOLE.z]}>
-      <meshStandardMaterial color="#ef4444" side={THREE.DoubleSide} />
+      <meshToonMaterial gradientMap={toonGradient()} color="#ef4444" side={THREE.DoubleSide} />
     </mesh>
   );
 }
@@ -104,7 +105,7 @@ function Ball({ shot, speed, onHoleOut }: { shot: number; speed: number; onHoleO
     <>
       <mesh ref={ball} castShadow>
         <icosahedronGeometry args={[BALL_R, 3]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.35} />
+        <meshToonMaterial gradientMap={toonGradient()} color="#ffffff" />
       </mesh>
       <mesh ref={shadow} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[BALL_R * 1.2, 24]} />
@@ -119,15 +120,15 @@ function Tree({ position, scale = 1 }: { position: [number, number, number]; sca
     <group position={position} scale={scale}>
       <mesh position={[0, 0.3, 0]}>
         <cylinderGeometry args={[0.07, 0.09, 0.6, 8]} />
-        <meshStandardMaterial color="#7c4a2d" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#7c4a2d" />
       </mesh>
       <mesh position={[0, 1.0, 0]}>
         <coneGeometry args={[0.45, 1.1, 10]} />
-        <meshStandardMaterial color="#166534" flatShading />
+        <meshToonMaterial gradientMap={toonGradient()} color="#166534" />
       </mesh>
       <mesh position={[0, 1.45, 0]}>
         <coneGeometry args={[0.32, 0.8, 10]} />
-        <meshStandardMaterial color="#15803d" flatShading />
+        <meshToonMaterial gradientMap={toonGradient()} color="#15803d" />
       </mesh>
     </group>
   );
@@ -139,21 +140,21 @@ function Course({ shot, speed, onHoleOut }: { shot: number; speed: number; onHol
       {/* rough + green */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
         <circleGeometry args={[9, 48]} />
-        <meshStandardMaterial color="#2f7d3a" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#2f7d3a" />
       </mesh>
       <mesh position={[1.2, -0.03, -0.2]}>
         <cylinderGeometry args={[2.6, 2.6, 0.08, 64]} />
-        <meshStandardMaterial color="#4cbb5e" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#4cbb5e" />
       </mesh>
       {/* sand trap */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[-1.2, 0.005, -1.4]} scale={[1.6, 0.8, 1]}>
         <circleGeometry args={[0.7, 32]} />
-        <meshStandardMaterial color="#e8d8a8" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#e8d8a8" />
       </mesh>
       {/* tee box */}
       <mesh position={[TEE.x, 0.04, TEE.z]}>
         <cylinderGeometry args={[0.025, 0.015, 0.08, 8]} />
-        <meshStandardMaterial color="#facc15" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#facc15" />
       </mesh>
       {/* cup, pin */}
       <mesh position={[HOLE.x, 0.012, HOLE.z]}>
@@ -162,7 +163,7 @@ function Course({ shot, speed, onHoleOut }: { shot: number; speed: number; onHol
       </mesh>
       <mesh position={[HOLE.x, 0.9, HOLE.z]}>
         <cylinderGeometry args={[0.02, 0.02, 1.8, 8]} />
-        <meshStandardMaterial color="#f5f5f5" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#f5f5f5" />
       </mesh>
       <Flag speed={speed} />
       <Ball shot={shot} speed={speed} onHoleOut={onHoleOut} />

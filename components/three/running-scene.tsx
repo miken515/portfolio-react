@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef, type RefObject } from "react";
 import * as THREE from "three";
 import { LookAt, SceneCanvas, usePrefersReducedMotion } from "./scene-canvas";
+import { toonGradient } from "./toon";
 
 const THIGH = 0.48;
 const SHIN = 0.48;
@@ -21,7 +22,7 @@ function Segment({ length, radius, color }: { length: number; radius: number; co
   return (
     <mesh position={[0, -length / 2, 0]}>
       <capsuleGeometry args={[radius, Math.max(0.01, length - radius * 2), 4, 10]} />
-      <meshStandardMaterial color={color} roughness={0.6} />
+      <meshToonMaterial gradientMap={toonGradient()} color={color} />
     </mesh>
   );
 }
@@ -66,7 +67,7 @@ function Runner({ speed }: { speed: number }) {
         <Segment length={SHIN} radius={0.06} color={SKIN} />
         <mesh position={[0.06, -SHIN - 0.02, 0]}>
           <boxGeometry args={[0.24, 0.08, 0.11]} />
-          <meshStandardMaterial color={SHOE} />
+          <meshToonMaterial gradientMap={toonGradient()} color={SHOE} />
         </mesh>
       </group>
     </group>
@@ -80,16 +81,16 @@ function Runner({ speed }: { speed: number }) {
       <group position={[0, HIP_Y, 0]} rotation={[0, 0, -0.14]}>
         <mesh position={[0, 0.3, 0]}>
           <capsuleGeometry args={[0.15, 0.36, 4, 12]} />
-          <meshStandardMaterial color={SHIRT} roughness={0.5} />
+          <meshToonMaterial gradientMap={toonGradient()} color={SHIRT} />
         </mesh>
         <mesh position={[0, 0.82, 0]}>
           <sphereGeometry args={[0.14, 20, 20]} />
-          <meshStandardMaterial color={SKIN} />
+          <meshToonMaterial gradientMap={toonGradient()} color={SKIN} />
         </mesh>
         {/* headband */}
         <mesh position={[0, 0.86, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[0.135, 0.022, 8, 24]} />
-          <meshStandardMaterial color={SHOE} />
+          <meshToonMaterial gradientMap={toonGradient()} color={SHOE} />
         </mesh>
         {arm(shoulderL, 0.2)}
         {arm(shoulderR, -0.2)}
@@ -122,11 +123,11 @@ function Scenery({ speed }: { speed: number }) {
       {/* road */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[30, 1.6]} />
-        <meshStandardMaterial color="#475569" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#475569" />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, -3]}>
         <planeGeometry args={[30, 5]} />
-        <meshStandardMaterial color="#65a30d" />
+        <meshToonMaterial gradientMap={toonGradient()} color="#65a30d" />
       </mesh>
       <group ref={dashes}>
         {Array.from({ length: 10 }, (_, i) => (
@@ -141,11 +142,11 @@ function Scenery({ speed }: { speed: number }) {
           <group key={i} position={[0, 0, -1.6 - (i % 2) * 0.8]} scale={0.8 + (i % 3) * 0.2}>
             <mesh position={[0, 0.25, 0]}>
               <cylinderGeometry args={[0.06, 0.08, 0.5, 6]} />
-              <meshStandardMaterial color="#78350f" />
+              <meshToonMaterial gradientMap={toonGradient()} color="#78350f" />
             </mesh>
             <mesh position={[0, 0.8, 0]}>
               <icosahedronGeometry args={[0.38, 0]} />
-              <meshStandardMaterial color={i % 2 ? "#15803d" : "#16a34a"} flatShading />
+              <meshToonMaterial gradientMap={toonGradient()} color={i % 2 ? "#15803d" : "#16a34a"} />
             </mesh>
           </group>
         ))}
@@ -154,7 +155,7 @@ function Scenery({ speed }: { speed: number }) {
         {Array.from({ length: 4 }, (_, i) => (
           <mesh key={i} position={[0, -0.4, -5]} scale={[2.2, 1 + (i % 2) * 0.5, 1]}>
             <sphereGeometry args={[1.3, 16, 12]} />
-            <meshStandardMaterial color="#4d7c0f" flatShading />
+            <meshToonMaterial gradientMap={toonGradient()} color="#4d7c0f" />
           </mesh>
         ))}
       </group>

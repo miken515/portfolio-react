@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { profile } from "@/lib/resume";
+import { Reveal } from "./section-heading";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -56,8 +57,11 @@ export function Contact() {
 
   return (
     <section id="contact" className="grid scroll-mt-28 grid-cols-1 gap-8 py-16 md:grid-cols-2">
-      <div className="flex flex-col justify-center content-center">
-        <h2 className="text-4xl font-bold my-2 uppercase">Let&apos;s Connect!</h2>
+      <Reveal className="paper flex flex-col justify-center p-6 sm:p-8">
+        <p className="mb-1 font-hand text-base text-primary">Say hello</p>
+        <h2 className="my-2 text-4xl font-black">
+          <span className="brush">Let&apos;s Connect!</span>
+        </h2>
         <p className="mb-4 max-w-md text-muted-foreground sm:text-lg">
           Whether you have a question or just want to say hi, I&apos;ll
           try my best to get back to you! You can also email me at{" "}
@@ -87,9 +91,9 @@ export function Contact() {
             />
           </Link>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="w-full">
+      <Reveal className="paper w-full p-6 sm:p-8" delay={0.1}>
         <form onSubmit={handleSubmit}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
@@ -130,14 +134,14 @@ export function Contact() {
               />
             </div>
 
-            <Button className="mt-4" type="submit" disabled={loading}>
+            <Button className="mt-4 rounded-full" type="submit" disabled={loading}>
               {loading ? "Sending..." : "Send a message"}
             </Button>
           </div>
         </form>
         {successMessage && <p className="text-green-600 mt-4">{successMessage}</p>}
         {errorMessage && <p className="text-red-600 mt-4">{errorMessage}</p>}
-      </div>
+      </Reveal>
     </section>
   );
 }
